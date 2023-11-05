@@ -7,8 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 
 // Add services to the container.
-builder.Services.Configure<BookStoreDatabaseSettings>(
-    builder.Configuration.GetSection("BookStoreDatabase"));
+builder.Services.AddOptions<BookStoreDatabaseSettings>()
+    .Bind(builder.Configuration.GetSection("BookStoreDatabase"))
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

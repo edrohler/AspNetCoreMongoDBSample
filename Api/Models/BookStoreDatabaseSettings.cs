@@ -1,8 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Api.Models;
 
 public class BookStoreDatabaseSettings
 {
-    public string BooksCollectionName { get; set; } = null!;
-    public string ConnectionString { get; set; } = null!;
-    public string DatabaseName { get; set; } = null!;
+    [Required]
+    public required string BooksCollectionName { get; set; }
+    [Required]
+    public required string ConnectionString { get; set; }
+    [Required]
+    public required string DatabaseName { get; set; }
 }
